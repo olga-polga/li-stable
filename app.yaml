@@ -6,6 +6,10 @@ skip_files:
 api_version: 1
 threadsafe: true
 handlers:
-- url: /
-  static_files: public/index.html
-  upload: public/bundle.js
+ - url: /
+   static_files: public/index.html
+   upload: public/index.html
+
+ - url: /(.*)
+   static_files: public/\1
+   upload: public/(.*)

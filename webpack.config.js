@@ -5,7 +5,7 @@ var config = {
     entry: [
         './src/main.js'
     ],
-
+    cache: false,
     output: {
         path: path.resolve(__dirname, 'public'), // store the bundled output in dist/bundle.js
         filename: 'bundle.js'                  // specifying file name for our compiled assets
