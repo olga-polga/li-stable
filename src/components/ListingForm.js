@@ -1,7 +1,5 @@
-
-
 import React, {Component} from 'react';
-
+import {Icon} from 'react-fa'
 export default class ListingForm extends Component {
 
     constructor(props) {
@@ -36,7 +34,8 @@ export default class ListingForm extends Component {
                 <label>
                     <input type="text" name="newListing"
                            value={this.state.newListing} onChange={this._onChange} />
-                    <button type="button" className="btn" onClick={this._onClick}>+</button>
+
+                    <Icon name="plus" size="lg" onClick={this._onClick} />
                 </label>
             </form>
         )

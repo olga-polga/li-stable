@@ -3,7 +3,7 @@ import ListItem from './ListItem';
 import ViewArea from "./Gallery";
 import ColorList from "./ColorList";
 import ListingForm from "./ListingForm";
-
+import {Icon} from 'react-fa'
 const items = [
     {
         "id": "1000",
@@ -155,7 +155,8 @@ export default class Listings extends Component {
 
                 <div className="column main">
                     {gallery}
-                    <button type="button" className="btn" onClick={this.addPhoto}>+</button>
+                    <Icon name="camera" size="lg" onClick={this.addPhoto} />
+
                 </div>
             </div>
 

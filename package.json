@@ -38,10 +38,14 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.6",
     "prop-types": "^15.6.0",
     "react": "^15.6.2",
     "react-dom": "^15.6.2",
-    "react-images": "^0.5.13"
+    "react-fa": "^5.0.0",
+    "react-fa-icon": "^0.1.4",
+    "react-images": "^0.5.13",
+    "url-loader": "^0.6.2"
   },
   "babel": {
     "presets": [
