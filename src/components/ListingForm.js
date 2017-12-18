@@ -32,11 +32,14 @@ export default class ListingForm extends Component {
         return (
             <form>
                 <label>
-                    <input type="text" name="newListing"
-                           value={this.state.newListing} onChange={this._onChange} />
-
-                    <Icon name="plus" size="lg" onClick={this._onClick} />
+                    <textarea rows="2"
+                              className="edit-area"
+                              name="newListing"
+                              placeholder="New listing ..."
+                              value={this.state.newListing} onChange={this._onChange}/>
                 </label>
+                    <Icon name="pencil" size="lg" onClick={this._onClick} className="right-corner"/>
+
             </form>
         )
     }

@@ -21,6 +21,10 @@ H1 {
 .column {
   float: left;
 }
+.right-corner {
+  float: right;
+  padding-right: 12px;
+}
 
 .menu {
   width: 33%;
@@ -48,9 +52,19 @@ ul {
 
 
 #menu {
-
   display:inline-block;
 }
+
+.edit-area {
+  width: 170px;
+  margin-left: 8px;
+  -webkit-border-radius: 8;
+  -moz-border-radius: 8;
+  border-radius: 8px;
+
+}
+
+
 
 
 
