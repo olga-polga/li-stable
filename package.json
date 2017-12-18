@@ -44,15 +44,11 @@
     "prop-types": "^15.6.0",
     "react": "^15.6.2",
     "react-dom": "^15.6.2",
-<<<<<<< HEAD
     "react-fa": "^5.0.0",
     "react-fa-icon": "^0.1.4",
     "react-images": "^0.5.13",
-    "url-loader": "^0.6.2"
-=======
-    "react-images": "^0.5.13",
+    "url-loader": "^0.6.2",
     "serve": "^6.4.2"
->>>>>>> 45526a2a2be36c185bff159e6fe991f73690f742
   },
   "babel": {
     "presets": [
