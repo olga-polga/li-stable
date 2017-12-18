@@ -5,10 +5,12 @@
   "scripts": {
     "test": "mocha --require babel-core/register --require ./test/helpers.js --require ./test/dom.js --recursive",
     "test:watch": "npm test -- --watch",
-    "start": "node ./src/main.js",
+    "start": "serve -s public",
+    "prestart": "yarn install",
     "dev": "webpack-dev-server --watch-poll",
     "build": "webpack -p --progress --colors",
-    "deploy": "npm run build && cf push -p public"
+    "deploy": "yarn run build && cf push -p public",
+    "gcp": "yarn run build && gcloud app deploy"
   },
   "keywords": [],
   "author": "Olga <olga.penina@dell.com>",
@@ -41,13 +43,17 @@
     "prop-types": "^15.6.0",
     "react": "^15.6.2",
     "react-dom": "^15.6.2",
-    "react-images": "^0.5.13"
+    "react-images": "^0.5.13",
+    "serve": "^6.4.2"
   },
   "babel": {
     "presets": [
       "env",
       "react"
     ]
+  },
+  "engines": {
+    "node": "9.x"
   },
   "main": "index.js",
   "repository": "https://github.com/olga-polga/listable.git"
