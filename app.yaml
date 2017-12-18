@@ -1,0 +1,11 @@
+---
+runtime: nodejs
+env: flex
+skip_files:
+- ^node_modules$
+api_version: 1
+threadsafe: true
+handlers:
+- url: /
+  static_files: public/index.html
+  upload: public/bundle.js

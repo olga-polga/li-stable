@@ -8,7 +8,7 @@ install `yarn`: https://yarnpkg.com/lang/en/docs/install/
 
 ## Install required packages:
 ```
-yarn add webpack babel-core babel-loader babel-preset-react
+yarn install
 ```
 
 ## Run locally (http://localhost:8080/)
@@ -26,4 +26,7 @@ yarn test
 yarn run deploy
 ```
 
-
+## Deploy to GCP  (edit app.yaml as needed)
+```
+gcloud app deploy
+```
