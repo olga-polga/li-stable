@@ -3,7 +3,7 @@
 Demo React js app using GCP offerings
 
 ## Prerequisites:
-
+install `node.js`: https://nodejs.org/en/
 install `yarn`: https://yarnpkg.com/lang/en/docs/install/
 
 ## Install required packages:

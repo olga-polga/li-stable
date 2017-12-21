@@ -4,50 +4,29 @@ import ViewArea from "./Gallery";
 import ColorList from "./ColorList";
 import ListingForm from "./ListingForm";
 import {Icon} from 'react-fa'
-const items = [
-    {
-        "id": "1000",
-        "address": "4 Privet Drive"
-    },
-    {
-        "id": "2000",
-        "address": "Wayne Manor, Gotham City"
-    },
-    {
-        "id": "3000",
-        "address": "221B Baker Street"
-    }
-]
-const sel1000 = [
+import axios from 'axios';
+var items = "...loading...";
+
+const sel1 = [
     {id: '1451934403379-ffeff84932da', caption: 'Photo by Gwen Weustink', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/I3C1sSXj1i8 (Leopard)
     {id: '1499933374294-4584851497cc', caption: 'Photo by Gwen Weustink', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/I3C1sSXj1i8 (Leopard)
-    {
-        id: '1493809842364-78817add7ffb',
-        caption: 'Photo by Adam Willoughby-Knox',
-        orientation: 'landscape',
-        useForDemo: true
-    },
+    {id: '1493809842364-78817add7ffb', caption: 'Photo by Adam Willoughby-Knox', orientation: 'landscape', useForDemo: true },
     {id: '1502005229762-cf1b2da7c5d6', caption: 'Photo by Teddy Kelley', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/cmKPOUgdmWc (Deer)
     {id: '1499916078039-922301b0eb9b', caption: 'Photo by Jay Ruzesky', orientation: 'landscape', useForDemo: true}
-]
+];
 
-const sel2000 = [
+const sel2 = [
     {id: '1430285561322-7808604715df', caption: 'Photo by Gwen Weustink', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/I3C1sSXj1i8 (Leopard)
     {id: '1484154218962-a197022b5858', caption: 'Photo by Gaetano Cessati', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/YOX8ZMTo7hk (Baby Crocodile)
     {id: '1464288550599-43d5a73451b8', caption: 'Photo by Boris Smokrovic', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/n0feC_PWFdk (Dragonfly)
     {id: '1480434935263-07efee66f5b7', caption: 'Photo by Gwen Weustink', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/I3C1sSXj1i8 (Leopard)
     {id: '1501183638710-841dd1904471', caption: 'Photo by Alan Emery', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/emTCWiq2txk (Beetle)
 ];
-const sel3000 = [
+const sel3 = [
     {id: '1475855581690-80accde3ae2b', caption: 'Photo by Gaetano Cessati', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/YOX8ZMTo7hk (Baby Crocodile)
     {id: '1489171078254-c3365d6e359f', caption: 'Photo by Teddy Kelley', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/cmKPOUgdmWc (Deer)
     {id: '1499916078039-922301b0eb9b', caption: 'Photo by Jay Ruzesky', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/h13Y8vyIXNU (Walrus)
-    {
-        id: '1495433324511-bf8e92934d90',
-        caption: 'Photo by Ján Jakub Naništa',
-        orientation: 'landscape',
-        useForDemo: true
-    }, // https://unsplash.com/photos/xqjO-lx39B4 (Scottish Highland Cow)
+    {id: '1495433324511-bf8e92934d90', caption: 'Photo by Ján Jakub Naništa', orientation: 'landscape', useForDemo: true }, // https://unsplash.com/photos/xqjO-lx39B4 (Scottish Highland Cow)
     {id: '1502005097973-6a7082348e28', caption: 'Photo by Eric Knoll', orientation: 'landscape', useForDemo: true}
 ];
 
@@ -72,21 +51,28 @@ function makeUnsplashThumbnail(id, orientation = 'landscape') {
 export default class Listings extends Component {
     constructor(props) {
         super(props);
-        this.state = {listings: items, selection: null};
+        this.state = { selection: null};
 
         this.showPix = this.showPix.bind(this);
         this.addListing = this.addListing.bind(this);
         this.addPhoto = this.addPhoto.bind(this);
 
+        this.apiUrl = '/api/houses'
+    }
+    // Lifecycle method
+    componentDidMount(){
+        // Make HTTP request with Axios
+        axios.get(this.apiUrl)
+            .then((response) => {
+                // Set state with result
+                this.setState({listings:response.data._embedded.houses});
+            });
     }
 
-    componentDidMount() {
-        this.setState({});
-    }
 
-
-    renderItems(items) {
-        return items.map((item) =>
+    renderItems() {
+        if (this.state.listings !== undefined)
+            return this.state.listings.map((item) =>
             <ListItem key={item.id} id={item.id} value={item.address} handleClick={this.showPix}/>);
     }
 
@@ -96,8 +82,8 @@ export default class Listings extends Component {
             newItem.id = Math.floor(Math.random() * 5000);
             newItem.address = newListing;
 
-            var updates = this.state.listings.slice()
-            updates.push(newItem)
+            var updates = this.state.listings.slice();
+            updates.push(newItem);
             this.setState({listings: updates})
         }
     }
@@ -114,7 +100,7 @@ export default class Listings extends Component {
     }
 
     render() {
-        const items = this.renderItems(this.state.listings);
+        items = this.renderItems(this.state.listings);
         let gallery = null;
         let source = null;
         try {

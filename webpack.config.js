@@ -48,7 +48,17 @@ var config = {
         }),
     ],
     devServer: {
-        contentBase: 'public'
+        contentBase: 'public',
+        headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+        },
+        proxy: {
+            '/api/**': {
+                target:'http://localhost:8090' , logLevel: 'debug'
+            }
+        }
+
     },
 }
 
