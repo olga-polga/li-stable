@@ -5,7 +5,7 @@
   "scripts": {
     "test": "mocha --require babel-core/register --require ./test/helpers.js --require ./test/dom.js --recursive",
     "test:watch": "npm test -- --watch",
-    "start": "serve -s public",
+    "start": "serve -s public ",
     "prestart": "yarn install",
     "dev": "webpack-dev-server --watch-poll --disable-host-check",
     "build": "webpack -w --progress --colors",
@@ -15,6 +15,7 @@
   "keywords": [],
   "author": "Olga <olga.penina@dell.com>",
   "license": "ISC",
+
   "devDependencies": {
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
@@ -35,6 +36,14 @@
     "webpack": "^3.9.1",
     "webpack-dev-server": "^2.9.4"
   },
+  "proxy": {
+    "/api/**": {
+      "target": "https://listable-189821.appspot.com"
+    }
+  },
+
+
+
   "dependencies": {
     "aphrodite": "^1.2.5",
     "axios": "^0.17.1",
