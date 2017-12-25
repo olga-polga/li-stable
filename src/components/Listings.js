@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import ListItem from './ListItem';
 import ViewArea from "./Gallery";
-import ColorList from "./ColorList";
 import ListingForm from "./ListingForm";
 import {Icon} from 'react-fa'
 import axios from 'axios';
@@ -142,7 +141,6 @@ export default class Listings extends Component {
                 <div className="column main">
                     {gallery}
                     <Icon name="camera" size="lg" onClick={this.addPhoto} />
-
                 </div>
             </div>
 

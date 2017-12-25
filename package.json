@@ -5,17 +5,16 @@
   "scripts": {
     "test": "mocha --require babel-core/register --require ./test/helpers.js --require ./test/dom.js --recursive",
     "test:watch": "npm test -- --watch",
-    "start": "serve -s public ",
+    "start": "react-scripts start -s build",
     "prestart": "yarn install",
     "dev": "webpack-dev-server --watch-poll --disable-host-check",
-    "build": "webpack -w --progress --colors",
+    "build": "react-scripts build",
     "deploy": "yarn run build && cf push -p public",
     "gcp": "yarn run build && gcloud app deploy --promote"
   },
   "keywords": [],
   "author": "Olga <olga.penina@dell.com>",
   "license": "ISC",
-
   "devDependencies": {
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
@@ -36,14 +35,7 @@
     "webpack": "^3.9.1",
     "webpack-dev-server": "^2.9.4"
   },
-  "proxy": {
-    "/api/**": {
-      "target": "https://listable-189821.appspot.com"
-    }
-  },
-
-
-
+  "proxy": "https://listable-189821.appspot.com",
   "dependencies": {
     "aphrodite": "^1.2.5",
     "axios": "^0.17.1",
@@ -57,7 +49,8 @@
     "react-fa": "^5.0.0",
     "react-fa-icon": "^0.1.4",
     "react-images": "^0.5.13",
-    "serve": "^6.4.2",
+    "react-scripts": "^1.0.17",
+    "serve": "^6.4.3",
     "url-loader": "^0.6.2"
   },
   "babel": {

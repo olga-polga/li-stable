@@ -3,7 +3,7 @@ var path = require('path');                // a useful node path helper library
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 var config = {
     entry: [
-        './src/main.js'
+        './src/index.js'
     ],
     cache: false,
     output: {
@@ -55,7 +55,7 @@ var config = {
         },
         proxy: {
             '/api/**': {
-                target:'http://localhost:8090' , logLevel: 'debug'
+                target:'http://listable-189821.appspot.com' , logLevel: 'debug'
             }
         }
 
