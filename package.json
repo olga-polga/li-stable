@@ -5,7 +5,7 @@
   "scripts": {
     "test": "mocha --require babel-core/register --require ./test/helpers.js --require ./test/dom.js --recursive",
     "test:watch": "npm test -- --watch",
-    "start": "react-scripts start -s build",
+    "start": "react-scripts start",
     "prestart": "yarn install",
     "dev": "webpack-dev-server  --watch-poll --disable-host-check",
     "build": "react-scripts build",
@@ -35,7 +35,7 @@
     "webpack": "^3.9.1",
     "webpack-dev-server": "^2.9.4"
   },
-  "proxy": "https://listable-189821.appspot.com",
+
   "dependencies": {
     "aphrodite": "^1.2.5",
     "axios": "^0.17.1",

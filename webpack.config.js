@@ -27,7 +27,13 @@ var config = {
                 }, {
                     loader: "css-loader"
                 }, {
-                    loader: "sass-loader"
+                    loader: "sass-loader",
+                    options: {
+                        importLoaders: 1,
+                        modules: true,
+                        minimize: true,
+                        sourceMap: true,
+                    },
                 }]
             },
             {
@@ -49,7 +55,7 @@ var config = {
         new webpack.DefinePlugin({
             'process.env':{
                 'NODE_ENV': JSON.stringify('development'),
-                'REACT_APP_REPO_URL': JSON.stringify('http://localhost:8090/api/houses')
+                'REACT_APP_REPO_URL': JSON.stringify('http://localhost:8090')
             }
         }),
     ],

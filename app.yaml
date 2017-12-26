@@ -7,9 +7,9 @@ api_version: 1
 threadsafe: true
 handlers:
  - url: /
-   static_files: public/index.html
-   upload: public/index.html
+   static_files: build/index.html
+   upload: build/index.html
 
  - url: /(.*)
-   static_files: public/\1
-   upload: public/(.*)
+   static_files: build/\1
+   upload: build/(.*)

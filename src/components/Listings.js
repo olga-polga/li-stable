@@ -55,8 +55,8 @@ export default class Listings extends Component {
         this.showPix = this.showPix.bind(this);
         this.addListing = this.addListing.bind(this);
         this.addPhoto = this.addPhoto.bind(this);
-
-        this.apiUrl = process.env.REACT_APP_REPO_URL;
+        console.log(process.env);
+        this.apiUrl = process.env.REACT_APP_REPO_URL + "/api/houses";
     }
     // Lifecycle method
     componentDidMount(){
