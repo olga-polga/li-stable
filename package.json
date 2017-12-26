@@ -10,7 +10,8 @@
     "dev": "webpack-dev-server  --watch-poll --disable-host-check",
     "build": "react-scripts build",
     "deploy": "yarn run build && cf push -p public",
-    "gcp": "yarn run build && gcloud app deploy --promote"
+    "gcp": "yarn run build && gcloud app deploy --promote",
+    "eject": "react-scripts eject"
   },
   "keywords": [],
   "author": "Olga <olga.penina@dell.com>",

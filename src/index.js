@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import Listings from './components/Listings';
-import './css/main.scss';
+import './stylesheets/main.scss';
 class Root extends Component {
   render() {
     return (
