@@ -46,19 +46,19 @@ var config = {
             filename: 'public/[name].bundle.css',
             allChunks: true,
         }),
-        new webpack.DefinePlugin({
-            'process.env':{
-                'NODE_ENV': JSON.stringify('development'),
-                'REACT_APP_REPO_URL': JSON.stringify('http://localhost:8090/api/houses')
-            }
-        }),
     ],
     devServer: {
         contentBase: 'public',
         headers: {
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+        },
+        proxy: {
+            '/api/**': {
+                target:'http://listable-189821.appspot.com' , logLevel: 'debug'
+            }
         }
-    }
+
+    },
 }
 module.exports = config;
