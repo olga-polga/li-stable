@@ -1,5 +1,5 @@
 $font-stack:    Helvetica, sans-serif;
-$primary-color: #7b9fec;
+$primary-color: #485074;
 
 body {
   font: 100% $font-stack;
@@ -7,7 +7,7 @@ body {
 }
 
 H1 {
-  color: #7b9fec;
+  color: $primary-color;
 }
 
 

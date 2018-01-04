@@ -51,7 +51,7 @@ function makeUnsplashThumbnail(id, orientation = 'landscape') {
 }
 
 
-export default class App extends Component {
+export default class Listable extends Component {
     constructor(props) {
         super(props);
         this.state = { selection: null};
