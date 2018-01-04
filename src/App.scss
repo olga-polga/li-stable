@@ -1,0 +1,29 @@
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #7b9fec;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+}
+
+H1 {
+  color: #7b9fec;
+}
+
+
+.edit-area {
+  width: 170px;
+  margin-left: 8px;
+  -webkit-border-radius: 8;
+  -moz-border-radius: 8;
+  border-radius: 8px;
+}
+
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+

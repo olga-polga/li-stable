@@ -1,0 +1,37 @@
+/* Clear floats after the columns */
+.container:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+.column {
+  float: left; }
+
+.right-corner {
+  float: right;
+  padding-right: 12px; }
+
+.menu {
+  width: 33%;
+  background: #2c3e50;
+  color: #7b9fec;
+  width: 220px; }
+
+ul {
+  list-style: none; }
+
+.menu li {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 10px;
+  list-style: none; }
+
+.menu li:hover {
+  background-color: #add43c;
+  color: #ff0f0a; }
+
+.main {
+  width: 75%; }
+
+#menu {
+  display: inline-block; }

@@ -1,9 +1,13 @@
-import React, {Component, PropTypes} from 'react';
-import ListItem from './ListItem';
-import ViewArea from "./Gallery";
-import ListingForm from "./ListingForm";
+import React, {Component} from 'react';
+import ListItem from './components/ListItem';
+import ViewArea from "./components/Gallery";
+import ListingForm from "./components/ListingForm";
 import {Icon} from 'react-fa'
 import axios from 'axios';
+
+import './App.css';
+import './stylesheets/menu.css';
+
 var items = "...loading...";
 
 const sel1 = [
@@ -47,7 +51,7 @@ function makeUnsplashThumbnail(id, orientation = 'landscape') {
 }
 
 
-export default class Listings extends Component {
+export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = { selection: null};
