@@ -11,7 +11,7 @@ install `yarn`: https://yarnpkg.com/lang/en/docs/install/
 yarn install
 ```
 
-## Run locally (http://localhost:8080/)
+## Run locally (http://localhost:3000/)
 ```
 yarn start
 ```
