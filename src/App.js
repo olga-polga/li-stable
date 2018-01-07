@@ -69,6 +69,7 @@ export default class Listable extends Component {
             .then((response) => {
                 // Set state with result
                 this.setState({listings:response.data._embedded.houses});
+                this.setState({ selection: response.data._embedded.houses[0].id});
             });
     }
 
