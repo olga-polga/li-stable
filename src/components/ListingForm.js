@@ -38,7 +38,7 @@ export default class ListingForm extends Component {
                               placeholder="New listing ..."
                               value={this.state.newListing} onChange={this._onChange}/>
                 </label>
-                    <Icon name="pencil" size="lg" onClick={this._onClick} className="right-corner"/>
+                    <Icon name="upload" size="lg" onClick={this._onClick} className="right-corner"/>
 
             </form>
         )
