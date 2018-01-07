@@ -4,7 +4,7 @@ import ViewArea from "./components/Gallery";
 import ListingForm from "./components/ListingForm";
 import {Icon} from 'react-fa'
 import axios from 'axios';
-
+import {ToastContainer} from 'react-toastr';
 import './App.css';
 import './stylesheets/menu.css';
 
@@ -81,13 +81,30 @@ export default class Listable extends Component {
 
     addListing(newListing) {
         if (newListing !== undefined) {
-            var newItem = {};
-            newItem.id = Math.floor(Math.random() * 5000);
-            newItem.address = newListing;
+            // var newItem = {};
+            // newItem.id = Math.floor(Math.random() * 5000);
+            // newItem.address = newListing;
+            //
+            // var updates = this.state.listings.slice();
+            // updates.push(newListing);
+            // this.setState({listings: updates})
 
-            var updates = this.state.listings.slice();
-            updates.push(newItem);
-            this.setState({listings: updates})
+            axios.post(process.env.REACT_APP_REPO_URL + '/api/houses', {
+                address:  newListing
+
+            }).then(response => {
+                console.log(response.status);
+
+                this.refs.toastContainer.success(
+                    "Added new Listing"
+                );
+                axios.get(this.apiUrl)
+                    .then((response) => {
+                        // Set state with result
+                        this.setState({listings:response.data._embedded.houses});
+                    });
+
+            });
         }
     }
 
@@ -137,12 +154,14 @@ export default class Listable extends Component {
 
         return (
             <div className="container">
+
                 <div className="column menu">
                     {items}
                     <ListingForm addListing={this.addListing}/>
                 </div>
 
                 <div className="column main">
+                    <ToastContainer ref="toastContainer" className="toast-top-right"/>
                     {gallery}
                     <Icon name="camera" size="lg" onClick={this.addPhoto} />
                 </div>
