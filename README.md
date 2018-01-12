@@ -13,7 +13,7 @@ yarn install
 
 ## Run locally (http://localhost:3000/)
 ```
-yarn start
+yarn run dev
 ```
 
 ## Test
