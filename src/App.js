@@ -76,7 +76,7 @@ export default class Listable extends Component {
             .then((response) => {
                 // Set state with result
                 this.setState({listings:response.data._embedded.houses});
-                this.setState({ selection: response.data._embedded.houses[0].id});
+                this.setState({selection: response.data._embedded.houses[0].id});
             });
     }
 
@@ -127,8 +127,28 @@ export default class Listable extends Component {
         this.setState({selection: key})
     }
     onDrop(files) {
-        this.setState({
-            files
+        const url =  process.env.REACT_APP_UPLOAD_URL + "/upload"
+
+        const uploaders = files.map(file => {
+            // Initial FormData
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("listingId", this.state.selection);
+
+
+            // Make an AJAX upload request using Axios
+            return axios.post(url, formData, {
+                headers: { "X-Requested-With": "XMLHttpRequest" },
+            }).then(response => {
+                const data = response.data;
+               // const fileURL = data.secure_url // You should store this URL for future references in your app
+                console.log(data);
+            })
+        });
+
+        // Once all the files are uploaded
+        axios.all(uploaders).then(() => {
+            console.log(" - all in -");
         });
     }
 
