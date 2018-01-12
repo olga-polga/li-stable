@@ -5,6 +5,7 @@ import ListingForm from "./components/ListingForm";
 import {Icon} from 'react-fa'
 import axios from 'axios';
 import {ToastContainer} from 'react-toastr';
+import Dropzone from 'react-dropzone'
 import './App.css';
 import './stylesheets/menu.css';
 
@@ -14,23 +15,28 @@ const sel1 = [
     {id: '1451934403379-ffeff84932da', caption: 'Photo by Gwen Weustink', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/I3C1sSXj1i8 (Leopard)
     {id: '1499933374294-4584851497cc', caption: 'Photo by Gwen Weustink', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/I3C1sSXj1i8 (Leopard)
     {id: '1493809842364-78817add7ffb', caption: 'Photo by Adam Willoughby-Knox', orientation: 'landscape', useForDemo: true },
-    {id: '1502005229762-cf1b2da7c5d6', caption: 'Photo by Teddy Kelley', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/cmKPOUgdmWc (Deer)
-    {id: '1499916078039-922301b0eb9b', caption: 'Photo by Jay Ruzesky', orientation: 'landscape', useForDemo: true}
 ];
 
 const sel2 = [
     {id: '1430285561322-7808604715df', caption: 'Photo by Gwen Weustink', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/I3C1sSXj1i8 (Leopard)
     {id: '1484154218962-a197022b5858', caption: 'Photo by Gaetano Cessati', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/YOX8ZMTo7hk (Baby Crocodile)
     {id: '1464288550599-43d5a73451b8', caption: 'Photo by Boris Smokrovic', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/n0feC_PWFdk (Dragonfly)
-    {id: '1480434935263-07efee66f5b7', caption: 'Photo by Gwen Weustink', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/I3C1sSXj1i8 (Leopard)
-    {id: '1501183638710-841dd1904471', caption: 'Photo by Alan Emery', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/emTCWiq2txk (Beetle)
 ];
 const sel3 = [
     {id: '1475855581690-80accde3ae2b', caption: 'Photo by Gaetano Cessati', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/YOX8ZMTo7hk (Baby Crocodile)
     {id: '1489171078254-c3365d6e359f', caption: 'Photo by Teddy Kelley', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/cmKPOUgdmWc (Deer)
-    {id: '1499916078039-922301b0eb9b', caption: 'Photo by Jay Ruzesky', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/h13Y8vyIXNU (Walrus)
-    {id: '1495433324511-bf8e92934d90', caption: 'Photo by Ján Jakub Naništa', orientation: 'landscape', useForDemo: true }, // https://unsplash.com/photos/xqjO-lx39B4 (Scottish Highland Cow)
     {id: '1502005097973-6a7082348e28', caption: 'Photo by Eric Knoll', orientation: 'landscape', useForDemo: true}
+];
+const sel4 = [
+    {id: '1502005229762-cf1b2da7c5d6', caption: 'Photo by Teddy Kelley', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/cmKPOUgdmWc (Deer)
+    {id: '1495433324511-bf8e92934d90', caption: 'Photo by Ján Jakub Naništa', orientation: 'landscape', useForDemo: true }, // https://unsplash.com/photos/xqjO-lx39B4 (Scottish Highland Cow)
+    {id: '1499916078039-922301b0eb9b', caption: 'Photo by Jay Ruzesky', orientation: 'landscape', useForDemo: true}
+
+];
+const sel5 = [
+    {id: '1480434935263-07efee66f5b7', caption: 'Photo by Gwen Weustink', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/I3C1sSXj1i8 (Leopard)
+    {id: '1499916078039-922301b0eb9b', caption: 'Photo by Jay Ruzesky', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/h13Y8vyIXNU (Walrus)
+    {id: '1501183638710-841dd1904471', caption: 'Photo by Alan Emery', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/emTCWiq2txk (Beetle)
 ];
 
 
@@ -54,13 +60,14 @@ function makeUnsplashThumbnail(id, orientation = 'landscape') {
 export default class Listable extends Component {
     constructor(props) {
         super(props);
-        this.state = { selection: null};
+        this.state = { selection: null, files: [] };
 
         this.showPix = this.showPix.bind(this);
         this.addListing = this.addListing.bind(this);
         this.addPhoto = this.addPhoto.bind(this);
         console.log(process.env);
         this.apiUrl = process.env.REACT_APP_REPO_URL + "/api/houses";
+        this.onFileLoad = (e, file) => console.log(e.target.result, file.name);
     }
     // Lifecycle method
     componentDidMount(){
@@ -119,6 +126,12 @@ export default class Listable extends Component {
         console.log(key);
         this.setState({selection: key})
     }
+    onDrop(files) {
+        this.setState({
+            files
+        });
+    }
+
 
     render() {
         items = this.renderItems(this.state.listings);
@@ -153,6 +166,7 @@ export default class Listable extends Component {
         }
 
 
+
         return (
             <div className="container">
 
@@ -164,7 +178,14 @@ export default class Listable extends Component {
                 <div className="column main">
                     <ToastContainer ref="toastContainer" className="toast-top-right"/>
                     {gallery}
-                    <Icon name="camera" size="lg" onClick={this.addPhoto} />
+                    <Dropzone
+                        onDrop={this.onDrop.bind(this)}
+                        multiple
+                        accept="image/*"
+
+                    >
+                        <p>Drop your files or click here to upload</p>
+                    </Dropzone>
                 </div>
             </div>
 
