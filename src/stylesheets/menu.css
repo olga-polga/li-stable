@@ -26,9 +26,12 @@ ul {
   padding-left: 10px;
   list-style: none; }
 
+.selected {
+  color: #ff8833; }
+
 .menu li:hover {
-  background-color: #add43c;
-  color: #ff0f0a; }
+  background-color: #4a647a;
+  color: #ff8833; }
 
 .main {
   width: 75%; }

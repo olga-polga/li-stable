@@ -1,5 +1,8 @@
 $menu-bgcolor: #2c3e50;
+$menu-bgcolor-active: #4a647a;
 $menu-color: #7b9fec;
+$menu-color-active: #ff8833;
+
 /* Clear floats after the columns */
 .container:after {
   content: "";
@@ -30,9 +33,14 @@ ul {
   padding-left: 10px;
   list-style: none;
 }
+
+.selected {
+  color: $menu-color-active;
+}
+
 .menu li:hover {
-  background-color: #add43c;
-  color: #ff0f0a;
+  background-color: $menu-bgcolor-active;
+  color: $menu-color-active;
 }
 
 .main {

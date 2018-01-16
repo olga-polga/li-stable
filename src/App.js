@@ -14,7 +14,12 @@ var items = "...loading...";
 const sel1 = [
     {id: '1451934403379-ffeff84932da', caption: 'Photo by Gwen Weustink', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/I3C1sSXj1i8 (Leopard)
     {id: '1499933374294-4584851497cc', caption: 'Photo by Gwen Weustink', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/I3C1sSXj1i8 (Leopard)
-    {id: '1493809842364-78817add7ffb', caption: 'Photo by Adam Willoughby-Knox', orientation: 'landscape', useForDemo: true },
+    {
+        id: '1493809842364-78817add7ffb',
+        caption: 'Photo by Adam Willoughby-Knox',
+        orientation: 'landscape',
+        useForDemo: true
+    },
 ];
 
 const sel2 = [
@@ -29,7 +34,12 @@ const sel3 = [
 ];
 const sel4 = [
     {id: '1502005229762-cf1b2da7c5d6', caption: 'Photo by Teddy Kelley', orientation: 'landscape', useForDemo: true}, // https://unsplash.com/photos/cmKPOUgdmWc (Deer)
-    {id: '1495433324511-bf8e92934d90', caption: 'Photo by Ján Jakub Naništa', orientation: 'landscape', useForDemo: true }, // https://unsplash.com/photos/xqjO-lx39B4 (Scottish Highland Cow)
+    {
+        id: '1495433324511-bf8e92934d90',
+        caption: 'Photo by Ján Jakub Naništa',
+        orientation: 'landscape',
+        useForDemo: true
+    }, // https://unsplash.com/photos/xqjO-lx39B4 (Scottish Highland Cow)
     {id: '1499916078039-922301b0eb9b', caption: 'Photo by Jay Ruzesky', orientation: 'landscape', useForDemo: true}
 
 ];
@@ -60,7 +70,7 @@ function makeUnsplashThumbnail(id, orientation = 'landscape') {
 export default class Listable extends Component {
     constructor(props) {
         super(props);
-        this.state = { selection: null, files: [] };
+        this.state = {selection: null, files: [], picturesUrl: null, sources: []};
 
         this.showPix = this.showPix.bind(this);
         this.addListing = this.addListing.bind(this);
@@ -69,22 +79,27 @@ export default class Listable extends Component {
         this.apiUrl = process.env.REACT_APP_REPO_URL + "/api/houses";
         this.onFileLoad = (e, file) => console.log(e.target.result, file.name);
     }
+
     // Lifecycle method
-    componentDidMount(){
+    componentDidMount() {
         // Make HTTP request with Axios
         axios.get(this.apiUrl)
             .then((response) => {
                 // Set state with result
-                this.setState({listings:response.data._embedded.houses});
-                this.setState({selection: response.data._embedded.houses[0].id});
+                this.setState({
+                    listings: response.data._embedded.houses,
+                    selection: response.data._embedded.houses[0].id,
+                    picturesUrl: response.data._embedded.houses[0]._links.pictures.href
+                })
+
             });
     }
-
-
+ 
     renderItems() {
         if (this.state.listings !== undefined)
             return this.state.listings.map((item) =>
-            <ListItem key={item.id} id={item.id} value={item.address} handleClick={this.showPix}/>);
+                <ListItem selected={this.state.selection} key={item.id} id={item.id} value={item.address}
+                          handleClick={this.showPix}/>);
     }
 
     addListing(newListing) {
@@ -98,7 +113,7 @@ export default class Listable extends Component {
             // this.setState({listings: updates})
 
             axios.post(process.env.REACT_APP_REPO_URL + '/api/houses', {
-                address:  newListing
+                address: newListing
 
             }).then(response => {
                 console.log(response.status);
@@ -109,7 +124,7 @@ export default class Listable extends Component {
                 axios.get(this.apiUrl)
                     .then((response) => {
                         // Set state with result
-                        this.setState({listings:response.data._embedded.houses});
+                        this.setState({listings: response.data._embedded.houses});
                     });
 
             });
@@ -123,11 +138,25 @@ export default class Listable extends Component {
     }
 
     showPix(key) {
-        console.log(key);
-        this.setState({selection: key})
+        const id = key - 1;
+        const url = this.state.listings[id]._links.pictures.href;
+        this.setState({
+            selection: key,
+            picturesUrl: url
+        })
+
+
+        axios.get(url)
+            .then((response) => {
+                const src = response.data._embedded.pictures.map(item =>
+                    ({src: item.url}));
+                console.log(JSON.stringify(src))
+                this.setState({sources: src})
+            });
     }
+
     onDrop(files) {
-        const url =  process.env.REACT_APP_UPLOAD_URL + "/upload"
+        const url = process.env.REACT_APP_UPLOAD_URL + "/upload"
 
         const uploaders = files.map(file => {
             // Initial FormData
@@ -138,10 +167,10 @@ export default class Listable extends Component {
 
             // Make an AJAX upload request using Axios
             return axios.post(url, formData, {
-                headers: { "X-Requested-With": "XMLHttpRequest" },
+                headers: {"X-Requested-With": "XMLHttpRequest"},
             }).then(response => {
                 const data = response.data;
-               // const fileURL = data.secure_url // You should store this URL for future references in your app
+                // const fileURL = data.secure_url // You should store this URL for future references in your app
                 console.log(data);
             })
         });
@@ -184,7 +213,6 @@ export default class Listable extends Component {
                 useForDemo
             }))}/>
         }
-
 
 
         return (
