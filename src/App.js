@@ -71,7 +71,7 @@ export default class Listable extends Component {
         }
     }
 
-    
+
     loadImages(key) {
         const id = key - 1;
         const url = this.state.listings[id]._links.pictures.href;
