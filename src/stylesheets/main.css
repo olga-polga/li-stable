@@ -18,30 +18,15 @@ H1 {
   float: right;
   padding-right: 12px; }
 
-.menu {
-  width: 33%;
-  background: #2c3e50;
-  color: #fff;
-  width: 220px; }
-
 ul {
   list-style: none; }
+/* Clear floats after the columns */
+.container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
-.menu li {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 10px;
-  list-style: none; }
-
-.menu li:hover {
-  background-color: #00bcd4;
-  color: #E91E63; }
-
-.main {
-  width: 75%; }
-
-#menu {
-  display: inline-block; }
 
 .edit-area {
   width: 170px;
@@ -50,33 +35,6 @@ ul {
   -moz-border-radius: 8;
   border-radius: 8px; }
 
-/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-@media (max-width: 600px) {
-  .column {
-    width: 100%; } }
 
-.btn {
-  background: #e9f0f5;
-  background-image: -webkit-linear-gradient(top, #e9f0f5, #92bed9);
-  background-image: -moz-linear-gradient(top, #e9f0f5, #92bed9);
-  background-image: -ms-linear-gradient(top, #e9f0f5, #92bed9);
-  background-image: -o-linear-gradient(top, #e9f0f5, #92bed9);
-  background-image: linear-gradient(to bottom, #e9f0f5, #92bed9);
-  -webkit-border-radius: 18;
-  -moz-border-radius: 18;
-  border-radius: 18px;
-  font-family: Arial;
-  color: #262126;
-  font-size: 18px;
-  padding: 3px 7px 3px 7px;
-  text-decoration: none;
-  margin: .7em; }
 
-.btn:hover {
-  background: #69757d;
-  background-image: -webkit-linear-gradient(top, #69757d, #cdd7de);
-  background-image: -moz-linear-gradient(top, #69757d, #cdd7de);
-  background-image: -ms-linear-gradient(top, #69757d, #cdd7de);
-  background-image: -o-linear-gradient(top, #69757d, #cdd7de);
-  background-image: linear-gradient(to bottom, #69757d, #cdd7de);
-  text-decoration: none; }
+
