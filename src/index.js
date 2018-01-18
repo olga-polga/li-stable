@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import './index.css';
 import Listable from './App';
 
-import registerServiceWorker from './registerServiceWorker';
+//import registerServiceWorker from './registerServiceWorker';
 class Root extends Component {
   render() {
     return (
