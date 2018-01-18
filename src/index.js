@@ -16,4 +16,4 @@ class Root extends Component {
 }
 
 render(<Root />, document.getElementById('root'));
-registerServiceWorker();
+//registerServiceWorker();
