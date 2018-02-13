@@ -5,35 +5,7 @@ body {
 H1 {
   color: #2c3e50; }
 
-/* Clear floats after the columns */
-.container:after {
-  content: "";
-  display: table;
-  clear: both; }
 
-.column {
-  float: left; }
-
-.right-corner {
-  float: right;
-  padding-right: 12px; }
-
-ul {
-  list-style: none; }
-/* Clear floats after the columns */
-.container:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-
-.edit-area {
-  width: 170px;
-  margin-left: 8px;
-  -webkit-border-radius: 8;
-  -moz-border-radius: 8;
-  border-radius: 8px; }
 
 
 

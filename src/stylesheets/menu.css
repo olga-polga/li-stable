@@ -13,6 +13,9 @@
   color: #7b9fec;
   width: 220px; }
 
+.menu ul {
+  padding-left: 0px; }
+
 .menu li {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -20,11 +23,11 @@
   list-style: none; }
 
 .selected {
-  color: #ff8833; }
+  color: #97ffc3; }
 
 .menu li:hover {
   background-color: #4a647a;
-  color: #ff8833; }
+  color: #97ffc3; }
 
 #menu {
   display: inline-block; }
@@ -33,3 +36,22 @@ p {
   -webkit-margin-before: 5em;
   -webkit-margin-start: 1em;
   color: #2c3e50; }
+
+/* Clear floats after the columns */
+.container:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+/* Clear floats after the columns */
+.container:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+.edit-area {
+  width: 170px;
+  margin-left: 8px;
+  -webkit-border-radius: 8;
+  -moz-border-radius: 8;
+  border-radius: 8px; }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ListItem from './components/ListItem';
+import Listings from './components/Listings';
 import ViewArea from "./components/Gallery";
 import ListingForm from "./components/ListingForm";
 import axios from 'axios';
@@ -41,13 +41,6 @@ export default class Listable extends Component {
             });
     }
 
-
-    renderItems() {
-        if (this.state.listings !== undefined)
-            return this.state.listings.map((item) =>
-                <ListItem selected={this.state.selection} key={item.id} id={item.id} value={item.address}
-                          handleClick={this.loadImages}/>);
-    }
 
 
     addListing(newListing) {
@@ -116,7 +109,6 @@ export default class Listable extends Component {
 
 
     render() {
-        items = this.renderItems(this.state.listings);
         let pictures = this.state.sources.map(({src}) => (
             {
                 src: src,
@@ -131,7 +123,7 @@ export default class Listable extends Component {
         return (
             <div className="container">
                 <div className="column menu">
-                    {items}
+                    <Listings/>
                     <ListingForm addListing={this.addListing}/>
                 </div>
 
